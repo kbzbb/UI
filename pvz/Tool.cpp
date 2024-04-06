@@ -8,7 +8,7 @@ void TOOL::Tool::take_pid(std::string name)
 	handle2 = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
 	for (Process32First(handle2, &list); Process32Next(handle2, &list);) {
 		if (list.szExeFile == name) {
-			pid = list.th32ParentProcessID;
+			pid = list.th32ProcessID;
 			handle = OpenProcess(PROCESS_ALL_ACCESS, false, pid);
 			break;
 		}
